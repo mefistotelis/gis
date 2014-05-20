@@ -1,0 +1,34 @@
+<GDAL_WMS>
+  <AdviseRead>true</AdviseRead>
+  <BlockSizeX>400</BlockSizeX>
+  <BlockSizeY>400</BlockSizeY>
+  <Cache>
+    <Depth>2</Depth>
+    <Extension>.jpeg</Extension>
+    <Path>/tmp/gdalwmscache-orto2</Path>
+  </Cache>
+  <ClampRequests>true</ClampRequests>
+  <DataWindow>
+    <LowerRightX>785000.000000</LowerRightX>
+    <LowerRightY>165000.000000</LowerRightY>
+    <UpperLeftX>125000.000000</UpperLeftX>
+    <UpperLeftY>870000.000000</UpperLeftY>
+    <SizeX>6600000</SizeX>
+    <SizeY>7050000</SizeY>
+  </DataWindow>
+  <MaxConnections>8</MaxConnections>
+  <OfflineMode>false</OfflineMode>
+  <Service>
+    <name>WMS</name>
+    <ImageFormat>image/jpeg</ImageFormat>
+    <Layers>Raster</Layers>
+    <SRS>EPSG:2180</SRS>
+    <ServerUrl>http://mapy.geoportal.gov.pl/wss/service/img/guest/ORTO/MapServer/WMSServer</ServerUrl>
+    <Version>1.1.1</Version>
+    <Title>GeoPortal ORTO2</Title>
+    <Copyright>GeoPortal</Copyright>
+  </Service>
+  <Timeout>30</Timeout>
+  <UserAgent>GDAL WMS driver (http://www.gdal.org/frmt_wms.html)</UserAgent>
+  <VerifyAdviseRead>true</VerifyAdviseRead>
+</GDAL_WMS>
