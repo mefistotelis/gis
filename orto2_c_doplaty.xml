@@ -1,0 +1,40 @@
+<GDAL_WMS>
+  <AdviseRead>true</AdviseRead>
+  <BlockSizeX>1024</BlockSizeX>
+  <BlockSizeY>1024</BlockSizeY>
+  <BandsCount>3</BandsCount>
+  <ClampRequests>true</ClampRequests>
+  <MaxConnections>8</MaxConnections>
+  <OfflineMode>false</OfflineMode>
+  <DataWindow>
+    <LowerRightX>870293</LowerRightX>
+    <LowerRightY>130029</LowerRightY>
+    <UpperLeftX>169365</UpperLeftX>
+    <UpperLeftY>776173</UpperLeftY>
+    <TileLevel>7</TileLevel> <!-- Note that size increases 3x for every tile level -->
+    <SizeX>1401856</SizeX>
+    <SizeY>1292288</SizeY>
+<!-- These lead to invalid size computation - do not use
+    <TileCountX>1369</TileCountX>
+    <TileCountY>1262</TileCountY>
+Resolution: 512 meters per tile
+ -->
+    <TileX>0</TileX>
+    <TileY>-923</TileY>
+    <YOrigin>bottom</YOrigin>
+  </DataWindow>
+  <Service name="TMS">
+    <ServerUrl>file:///mnt/agriculture/tms_ortofotomapa/${z}/${x}/${y}.png</ServerUrl>
+    <SRS>EPSG:2180</SRS>
+    <ImageFormat>image/png</ImageFormat>
+    <Version>1.1.1</Version>
+    <Title>Interopt ORTO3</Title>
+    <Copyright>Interopt</Copyright>
+  </Service>
+  <Timeout>20</Timeout>
+  <UserAgent>GDAL WMS driver (http://www.gdal.org/frmt_wms.html)</UserAgent>
+  <VerifyAdviseRead>true</VerifyAdviseRead>
+  <Projection>EPSG:2180</Projection>
+  <ZeroBlockHttpCodes>204,303,400,404,500,501</ZeroBlockHttpCodes>
+  <ZeroBlockOnServerException>true</ZeroBlockOnServerException>
+</GDAL_WMS>
