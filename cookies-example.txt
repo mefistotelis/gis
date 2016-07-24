@@ -1,0 +1,8 @@
+# Netscape HTTP Cookie File
+# http://www.netscape.com/newsref/std/cookie_spec.html
+# This example shows how the session cookie should look like.
+# You need to have access rights to the service, and view the map within it
+# in order for the cookie to be created.
+
+interop.doplaty.gov.pl	FALSE	/	FALSE	0	Languages	"pl,en-US,en"
+interop.doplaty.gov.pl	FALSE	/lids/browser	FALSE	0	JSESSIONID	MySeSsIoNiDWillBeThereNow.99
