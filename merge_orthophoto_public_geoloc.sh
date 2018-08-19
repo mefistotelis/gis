@@ -15,13 +15,17 @@ function dl_ortophoto_image {
     return
   fi
   while [ ! -f "${OUTFILE}" ]; do
-    echo "Plik ${OUTFILE}, próba: $n"
-    gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr 0.1 0.1 ../orto2_c_mod.xml  "${OUTFILE}"
+    echo "File ${OUTFILE}, retry: $n"
+    gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../orto2_c_geopor.xml  "${OUTFILE}"
     n=$[n + 1]
     break
   done
   cd ..
 }
+
+mkdir -p  "./mapa_ortofoto"
+
+RES=0.1
 
 OUTFILE="brzeg_lewy_test1.tif"
 SRS_topleft="172200 564500"
@@ -56,6 +60,13 @@ dl_ortophoto_image
 OUTFILE="brzeg_prawygorny_test1.tif"
 SRS_topleft="759600 731460"
 SRS_btmrght="759990 731300"
+dl_ortophoto_image
+
+RES=100
+OUTFILE="whole_poland_test1.tif"
+SRS_topleft="172200 774540"
+#SRS_btmrght="759990 135550"
+SRS_btmrght="861300 135550"
 dl_ortophoto_image
 
 exit 0
