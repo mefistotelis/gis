@@ -16,7 +16,7 @@ function dl_ortophoto_image {
   fi
   while [ ! -f "${OUTFILE}" ]; do
     echo "File ${OUTFILE}, retry: $n"
-    gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../orto2_c_geopor.xml  "${OUTFILE}"
+    gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../orto2_c-geopor.xml  "${OUTFILE}"
     n=$[n + 1]
     break
   done

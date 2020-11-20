@@ -1,0 +1,77 @@
+<GDAL_WMS>
+<!--
+ WMS configuration file for gdal_translate script.
+
+ This data was made based on response on GetCapabilities request from the server
+ which was used to acquire the tiles. The whole request:
+ https://ewniosek.arimr.gov.pl/lpis/ortofotomapa/gwc/service/wmts?layer=arimr%3Aortofotomapa&tilematrixset=EPSG%3A2180&Service=WMTS&Request=GetCapabilities&Version=1.0.0
+
+ The data used:
+ <TileMatrixLimits>
+  <TileMatrix>EPSG:2180:13</TileMatrix>
+  <MinTileRow>2121</MinTileRow>
+  <MaxTileRow>7254</MaxTileRow>
+  <MinTileCol>1250</MinTileCol>
+  <MaxTileCol>6804</MaxTileCol>
+ </TileMatrixLimits>
+ [...]
+ <TileMatrix>
+  <ows:Identifier>EPSG:2180:13</ows:Identifier>
+  <ScaleDenominator>892.8571428571429</ScaleDenominator>
+  <TopLeftCorner>0.0 1048576.0</TopLeftCorner>
+  <TileWidth>512</TileWidth>
+  <TileHeight>512</TileHeight>
+  <MatrixWidth>8192</MatrixWidth>
+  <MatrixHeight>8192</MatrixHeight>
+ </TileMatrix>
+
+From docs:
+ScaleDenominator. Each pixel is assumed to be 0.28mm, which allows to calculate
+ span of each tile in meters by multiplying TileWidth (or TileHeight) by
+ ScaleDenominator * 0.00028.
+Which gives:
+UnitsPerTile = TileWidth*ScaleDenominator*0.00028 = 128
+
+Coords examples:
+- top left part of map - top left corner of Tile(col,row) 1453,2850 = 683772,185982
+Tile size estimation from map - 128x128
+
+ -->
+  <AdviseRead>true</AdviseRead>
+  <BlockSizeX>512</BlockSizeX>
+  <BlockSizeY>512</BlockSizeY>
+  <BandsCount>3</BandsCount>
+  <ClampRequests>true</ClampRequests>
+  <MaxConnections>8</MaxConnections>
+  <OfflineMode>false</OfflineMode>
+  <DataWindow>
+    <LowerRightX>871040</LowerRightX> <!-- MaxTileCol*UnitsPerTile = (6804+1)*128 -->
+    <LowerRightY>120064</LowerRightY> <!-- (MatrixHeight-MaxTileRow)*UnitsPerTile = (8192-7254)*128 -->
+    <UpperLeftX>160000</UpperLeftX> <!-- MinTileCol*UnitsPerTile = 1250*128 -->
+    <UpperLeftY>777088</UpperLeftY> <!-- (MatrixHeight-MinTileRow)*UnitsPerTile = (8192-2121)*128 -->
+    <TileLevel>13</TileLevel> <!-- Size increases 2x for every tile level, amount of tiles is 2^TileLevel -->
+    <SizeX>2844160</SizeX> <!-- (MaxTileCol-MinTileCol+1)*TileWidth = (6804-1250+1)*512 -->
+    <SizeY>2628608</SizeY> <!-- (MaxTileRow-MinTileRow+1)*TileHeight = (7254-2121+1)*512 -->
+<!-- These lead to invalid size computation if our tile level is strangely defined
+    <TileCountX>1369</TileCountX>
+    <TileCountY>1262</TileCountY>
+ -->
+    <TileX>0</TileX> <!-- MinTileRow = 2121 -->
+    <TileY>-938</TileY> <!-- -(MatrixHeight-MaxTileRow) = -(8192-7254) -->
+    <YOrigin>bottom</YOrigin>
+  </DataWindow>
+  <Service name="TMS">
+    <ServerUrl>file:///mnt/storage_part/wms/download_scripts_repo/wmts_ortofotomapa/${z}/${x}/${y}.jpg</ServerUrl>
+    <SRS>EPSG:2180</SRS>
+    <ImageFormat>image/jpeg</ImageFormat>
+    <Version>1.1.1</Version>
+    <Title>eWniosek GWC orto</Title>
+    <Copyright>ewniosek gov</Copyright>
+  </Service>
+  <Timeout>20</Timeout>
+  <UserAgent>GDAL WMS driver (http://www.gdal.org/frmt_wms.html)</UserAgent>
+  <VerifyAdviseRead>true</VerifyAdviseRead>
+  <Projection>EPSG:2180</Projection>
+  <ZeroBlockHttpCodes>204,303,400,404,500,501</ZeroBlockHttpCodes>
+  <ZeroBlockOnServerException>true</ZeroBlockOnServerException>
+</GDAL_WMS>

@@ -14,12 +14,14 @@ function dl_ortophoto_image {
   fi
   while [ ! -f "${OUTFILE}" ]; do
     echo "Plik ${OUTFILE}, próba: $n"
-    gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr 0.1 0.1 ../orto2_c_doplaty.xml  "${OUTFILE}"
+    gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../orto2_c-doplaty-2016.xml  "${OUTFILE}"
     n=$[n + 1]
     break
   done
   cd ..
 }
+
+RES=0.1
 
 OUTFILE="brzeg_lewy_test2.tif"
 SRS_topleft="172200 564500"

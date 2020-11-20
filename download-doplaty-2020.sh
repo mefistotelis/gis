@@ -12,10 +12,11 @@
 #set -x
 
 for z in {13..13}; do
-  for x in {1250..6804}; do # whole width of poland
+  for x in {1250..6804}; do # whole width of Poland
     mkdir -p "wmts_ortofotomapa/${z}/${x}"
-    for y in {2121..7254}; do # whole height of poland
-      fname="wmts_ortofotomapa/${z}/${x}/${y}.png"
+    for y in {2121..7254}; do # whole height of Poland
+      fname="wmts_ortofotomapa/${z}/${x}/${y}.jpg"
+      # Skip that file if it already exists and is a proper image
       if [ -f "${fname}" ]; then
         if file "${fname}" | grep -q ' image data,'; then
           echo "${fname}: Image already exists"
@@ -24,11 +25,13 @@ for z in {13..13}; do
           echo "${fname}: File exists but DAMAGED"
         fi
       fi
+      # Download the next tile
       curl --insecure \
         -A "Mozilla/5.0 (Windows; U; Windows NT 5.1; de; rv:1.9.2.3) Gecko/20100401 Firefox/3.6.3" \
         --cookie cookies-2020.txt "https://ewniosek.arimr.gov.pl/lpis/ortofotomapa/gwc/service/wmts?layer=arimr%3Aortofotomapa&tilematrixset=EPSG%3A2180&Service=WMTS&Request=GetTile&Version=1.0.0&Format=image%2Fjpeg&TileMatrix=EPSG%3A2180%3A${z}&TileCol=${x}&TileRow=${y}" \
         > "${fname}"
-        fsize=$(wc -c <"${fname}")
+      # Verify the new file to make sure it is really an image
+      fsize=$(wc -c <"${fname}")
       if [ "${fsize}" -lt "256" ]; then
           if file "${fname}" | grep -q ' image data,'; then
             echo "${fname}: File is empty image"
