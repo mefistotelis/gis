@@ -1,0 +1,3 @@
+# Netscape HTTP Cookie File
+
+ewniosek.arimr.gov.pl	FALSE	/	FALSE	0	cookie_auth	MySessionIdthisOneIsLongLike1390Chars
