@@ -6,7 +6,7 @@ set -x
 
 function dl_ortophoto_image {
   n=0
-  cd "./mapa_ortofoto"
+  cd "./merged_maps_ortophoto"
   if [ -f "${OUTFILE}" ]; then
     echo "File ${OUTFILE} already exists"
     cd ..
@@ -21,7 +21,7 @@ function dl_ortophoto_image {
   cd ..
 }
 
-RES=0.1
+RES=0.25
 
 OUTFILE="brzeg_lewy_test2.tif"
 SRS_topleft="172200 564500"

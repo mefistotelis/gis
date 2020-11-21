@@ -8,7 +8,7 @@ set -x
 
 function dl_ortophoto_image {
   n=0
-  cd "./mapa_ortofoto"
+  cd "./merged_maps_ortophoto"
   if [ -f "${OUTFILE}" ]; then
     echo "File ${OUTFILE} already exists"
     cd ..
@@ -23,7 +23,7 @@ function dl_ortophoto_image {
   cd ..
 }
 
-mkdir -p  "./mapa_ortofoto"
+mkdir -p  "./merged_maps_ortophoto"
 
 RES=0.1
 
