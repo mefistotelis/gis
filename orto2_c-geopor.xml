@@ -9,10 +9,10 @@
   </Cache>
   <ClampRequests>true</ClampRequests>
   <DataWindow>
-    <LowerRightX>870000.000000</LowerRightX>
-    <LowerRightY>130000.000000</LowerRightY>
-    <UpperLeftX>160000.000000</UpperLeftX>
-    <UpperLeftY>790000.000000</UpperLeftY>
+    <LowerRightX>870000.0</LowerRightX>
+    <LowerRightY>130000.0</LowerRightY>
+    <UpperLeftX>160000.0</UpperLeftX>
+    <UpperLeftY>790000.0</UpperLeftY>
     <SizeX>7100000</SizeX>
     <SizeY>6600000</SizeY>
   </DataWindow>

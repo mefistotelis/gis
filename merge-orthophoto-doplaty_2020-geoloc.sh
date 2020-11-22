@@ -21,7 +21,9 @@ function dl_ortophoto_image {
   cd ..
 }
 
-RES=0.1
+mkdir -p  "./merged_maps_ortophoto"
+
+RES=0.25
 
 OUTFILE="brzeg_lewy_test2.tif"
 SRS_topleft="172200 564500"
