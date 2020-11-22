@@ -1,0 +1,53 @@
+<GDAL_WMS>
+  <BlockSizeX>256</BlockSizeX>
+  <BlockSizeY>256</BlockSizeY>
+  <AdviseRead>true</AdviseRead>
+  <BandsCount>3</BandsCount>
+  <ClampRequests>true</ClampRequests>
+  <Projection>EPSG:3857</Projection>
+<!--  <Projection>EPSG:2180</Projection> -->
+
+  <VerifyAdviseRead>true</VerifyAdviseRead>
+  <MaxConnections>8</MaxConnections>
+  <Timeout>20</Timeout>
+  <OfflineMode>false</OfflineMode>
+  <Cache>
+    <Depth>2</Depth>
+    <Extension>.png</Extension>
+    <Path>./gdalwmscache-googlm_orto</Path>
+  </Cache>
+
+  <DataWindow>
+ <!--   <LowerRightX>785000.00</LowerRightX>
+    <LowerRightY>165000.00</LowerRightY>
+    <UpperLeftX>125000.00</UpperLeftX>
+    <UpperLeftY>870000.00</UpperLeftY>
+    <SizeX>6600000</SizeX>
+    <SizeY>7050000</SizeY> -->
+    <UpperLeftX>-20037508.34</UpperLeftX>
+    <UpperLeftY>20037508.34</UpperLeftY>
+    <LowerRightX>20037508.34</LowerRightX>
+    <LowerRightY>-20037508.34</LowerRightY>
+    <TileLevel>20</TileLevel>
+    <TileCountX>1</TileCountX>
+    <TileCountY>1</TileCountY>
+    <YOrigin>top</YOrigin>
+  </DataWindow>
+
+<!-- Data is subject to term of use detailed at http://code.google.com/intl/nl/apis/maps/terms.html and
+     http://www.google.com/intl/en_ALL/help/terms_maps.html -->
+
+  <Service name="TMS">
+<!--    <ImageFormat>image/png</ImageFormat>
+    <SRS>EPSG:2180</SRS>
+    <Version>1.1.1</Version> -->
+    <!-- <ServerUrl>http://mt.google.com/vt/lyrs=m&amp;x=${x}&amp;y=${y}&amp;z=${z}</ServerUrl> --> <!-- Map -->
+    <ServerUrl>http://mt.google.com/vt/lyrs=s&amp;x=${x}&amp;y=${y}&amp;z=${z}</ServerUrl> <!-- Satellite -->
+    <!-- <ServerUrl>http://mt.google.com/vt/lyrs=y&amp;x=${x}&amp;y=${y}&amp;z=${z}</ServerUrl> --> <!-- Hybrid -->
+    <!-- <ServerUrl>http://mt.google.com/vt/lyrs=t&amp;x=${x}&amp;y=${y}&amp;z=${z}</ServerUrl> --> <!-- Terrain -->
+    <!-- <ServerUrl>http://mt.google.com/vt/lyrs=p&amp;x=${x}&amp;y=${y}&amp;z=${z}</ServerUrl> --> <!-- Terrain, Streets and Water  -->
+    <Title>Google Maps ORTO</Title>
+    <Copyright>Google</Copyright>
+  </Service>
+  <UserAgent>GDAL WMS driver (http://www.gdal.org/frmt_wms.html)</UserAgent>
+</GDAL_WMS>

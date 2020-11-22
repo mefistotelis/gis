@@ -18,7 +18,9 @@ function dl_ortophoto_image {
     echo "File ${OUTFILE}, retry: $n"
     gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../gdal-geop_public-orto_time-web.xml  "${OUTFILE}"
     n=$[n + 1]
-    break
+    if [ "$n" -gt "10" ]; then
+      break
+    fi
   done
   cd ..
 }
