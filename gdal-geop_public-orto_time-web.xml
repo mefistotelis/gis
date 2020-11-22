@@ -1,0 +1,35 @@
+<GDAL_WMS>
+  <AdviseRead>true</AdviseRead>
+  <BlockSizeX>512</BlockSizeX>
+  <BlockSizeY>512</BlockSizeY>
+  <Cache>
+    <Depth>2</Depth>
+    <Extension>.png</Extension>
+    <Path>./gdalwmscache-orto_time</Path>
+  </Cache>
+  <ClampRequests>true</ClampRequests>
+  <DataWindow>
+    <LowerRightX>785000.0</LowerRightX>
+    <LowerRightY>165000.0</LowerRightY>
+    <UpperLeftX>125000.0</UpperLeftX>
+    <UpperLeftY>870000.0</UpperLeftY>
+    <SizeX>6600000</SizeX>
+    <SizeY>7050000</SizeY>
+  </DataWindow>
+  <MaxConnections>8</MaxConnections>
+  <OfflineMode>false</OfflineMode>
+  <Service>
+    <name>WMS</name>
+    <ImageFormat>image/png</ImageFormat>
+    <!-- Hack to supply 'time' extent - add it to layer, so that it's copied to URL -->
+    <Layers>Raster&amp;time=2003</Layers>
+    <SRS>EPSG:2180</SRS>
+    <ServerUrl>http://mapy.geoportal.gov.pl/wss/service/img/guest/ORTO_TIME/MapServer/WMSServer?</ServerUrl>
+    <Version>1.1.1</Version>
+    <Title>GeoPortal ORTO_TIME</Title>
+    <Copyright>GeoPortal</Copyright>
+  </Service>
+  <Timeout>20</Timeout>
+  <UserAgent>GDAL WMS driver (http://www.gdal.org/frmt_wms.html)</UserAgent>
+  <VerifyAdviseRead>true</VerifyAdviseRead>
+</GDAL_WMS>

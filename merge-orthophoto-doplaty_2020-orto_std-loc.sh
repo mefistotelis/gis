@@ -1,12 +1,12 @@
 #!/bin/bash
-# Make maps from local TMS storage
-# Note that only farmers can request access to the source quasi-TMS server
+# Make maps from local WMTS storage
+# Note that only farmers can request access to the source WMTS server
 
 set -x
 
 function dl_ortophoto_image {
   n=0
-  cd "./merged_maps_ortophoto"
+  cd "./mapa_ortofoto"
   if [ -f "${OUTFILE}" ]; then
     echo "File ${OUTFILE} already exists"
     cd ..
@@ -14,7 +14,7 @@ function dl_ortophoto_image {
   fi
   while [ ! -f "${OUTFILE}" ]; do
     echo "Plik ${OUTFILE}, próba: $n"
-    gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../orto2_c-doplaty-2016.xml  "${OUTFILE}"
+    gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../gdal-doplaty_2020-orto_std-loc.xml  "${OUTFILE}"
     n=$[n + 1]
     break
   done
@@ -25,37 +25,37 @@ mkdir -p  "./merged_maps_ortophoto"
 
 RES=0.25
 
-OUTFILE="brzeg_lewy_test2.tif"
+OUTFILE="brzeg_lewy_test4.tif"
 SRS_topleft="172200 564500"
 SRS_btmrght="172500 564160"
 dl_ortophoto_image
 
-OUTFILE="brzeg_prawy_test2.tif"
+OUTFILE="brzeg_prawy_test4.tif"
 SRS_topleft="861000 345200"
 SRS_btmrght="861360 344950"
 dl_ortophoto_image
 
-OUTFILE="brzeg_gorny_test2.tif"
+OUTFILE="brzeg_gorny_test4.tif"
 SRS_topleft="456350 774540"
 SRS_btmrght="456600 774340"
 dl_ortophoto_image
 
-OUTFILE="brzeg_dolny_test2.tif"
+OUTFILE="brzeg_dolny_test4.tif"
 SRS_topleft="782650 135750"
 SRS_btmrght="782800 135550"
 dl_ortophoto_image
 
-OUTFILE="brzeg_lewydolny_test2.tif"
+OUTFILE="brzeg_lewydolny_test4.tif"
 SRS_topleft="206900 343700"
 SRS_btmrght="207150 343550"
 dl_ortophoto_image
 
-OUTFILE="brzeg_lewygorny_test2.tif"
+OUTFILE="brzeg_lewygorny_test4.tif"
 SRS_topleft="187600 683100"
 SRS_btmrght="188100 682850"
 dl_ortophoto_image
 
-OUTFILE="brzeg_prawygorny_test2.tif"
+OUTFILE="brzeg_prawygorny_test4.tif"
 SRS_topleft="759600 731460"
 SRS_btmrght="759990 731300"
 dl_ortophoto_image

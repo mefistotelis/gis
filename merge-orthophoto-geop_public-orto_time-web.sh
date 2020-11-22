@@ -1,20 +1,22 @@
 #!/bin/bash
-# Make maps from local TMS storage
-# Note that only farmers can request access to the source quasi-TMS server
+# Download maps from geoportal
+# Xml file: It should be easy to find a correct xml file on the net;
+# within the xml, the best tile size is currently 512x512
+# Note that coords from Geoportal needs to be switched - "Y X" instead of "X Y"
 
 set -x
 
 function dl_ortophoto_image {
   n=0
-  cd "./mapa_ortofoto"
+  cd "./merged_maps_ortophoto"
   if [ -f "${OUTFILE}" ]; then
     echo "File ${OUTFILE} already exists"
     cd ..
     return
   fi
   while [ ! -f "${OUTFILE}" ]; do
-    echo "Plik ${OUTFILE}, próba: $n"
-    gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../orto2_c-doplaty-2020.xml  "${OUTFILE}"
+    echo "File ${OUTFILE}, retry: $n"
+    gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../gdal-geop_public-orto_time-web.xml  "${OUTFILE}"
     n=$[n + 1]
     break
   done
@@ -23,7 +25,7 @@ function dl_ortophoto_image {
 
 mkdir -p  "./merged_maps_ortophoto"
 
-RES=0.25
+RES=0.1
 
 OUTFILE="brzeg_lewy_test2.tif"
 SRS_topleft="172200 564500"
@@ -58,6 +60,13 @@ dl_ortophoto_image
 OUTFILE="brzeg_prawygorny_test2.tif"
 SRS_topleft="759600 731460"
 SRS_btmrght="759990 731300"
+dl_ortophoto_image
+
+RES=100
+OUTFILE="whole_poland_test2.tif"
+SRS_topleft="172200 774540"
+#SRS_btmrght="759990 135550"
+SRS_btmrght="861300 135550"
 dl_ortophoto_image
 
 exit 0

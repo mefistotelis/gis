@@ -5,7 +5,7 @@
   <Cache>
     <Depth>2</Depth>
     <Extension>.png</Extension>
-    <Path>./gdalwmscache-orto2</Path>
+    <Path>./gdalwmscache-geop_orto2</Path>
   </Cache>
   <ClampRequests>true</ClampRequests>
   <DataWindow>
