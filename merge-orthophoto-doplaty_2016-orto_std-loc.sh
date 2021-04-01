@@ -13,7 +13,7 @@ function dl_ortophoto_image {
     return
   fi
   while [ ! -f "${OUTFILE}" ]; do
-    echo "Plik ${OUTFILE}, próba: $n"
+    echo "File ${OUTFILE}, retry: $n"
     gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../gdal-doplaty_2016-orto_std-loc.xml  "${OUTFILE}"
     n=$[n + 1]
     break

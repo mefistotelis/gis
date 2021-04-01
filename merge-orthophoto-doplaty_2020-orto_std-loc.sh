@@ -1,19 +1,19 @@
 #!/bin/bash
 # Make maps from local WMTS storage
-# Note that only farmers can request access to the source WMTS server
+# You have to download the data from source WMTS server before running this script
 
 set -x
 
 function dl_ortophoto_image {
   n=0
-  cd "./mapa_ortofoto"
+  cd "./merged_maps_ortophoto"
   if [ -f "${OUTFILE}" ]; then
     echo "File ${OUTFILE} already exists"
     cd ..
     return
   fi
   while [ ! -f "${OUTFILE}" ]; do
-    echo "Plik ${OUTFILE}, próba: $n"
+    echo "File ${OUTFILE}, retry: $n"
     gdal_translate -of GTiff -projwin ${SRS_topleft} ${SRS_btmrght} -tr ${RES} ${RES} ../gdal-doplaty_2020-orto_std-loc.xml  "${OUTFILE}"
     n=$[n + 1]
     break
